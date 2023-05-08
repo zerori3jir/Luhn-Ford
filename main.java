@@ -45,8 +45,13 @@ public class main {
 		
 	}
 	
-	static void fraudCheck() {
-		
+	static void fraudCheck(HashMap<String, Integer> amount) {
+		if (amount.get("1") >= 29 && amount.get("1") <= 32) {
+			System.out.println("Fraud Detected!");
+		}
+		else {
+			System.out.println("No Fraud Detected!");
+		}
 	}
 	
 	static void generateReport() {
@@ -110,7 +115,7 @@ public class main {
 			}
 			
 			else if (userInput.equals(checkForFraud)) {
-				fraudCheck();
+				fraudCheck(firstDigitPercentage);
 			}
 			
 			else if (userInput.equals(exitCondition)) {
