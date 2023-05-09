@@ -45,6 +45,11 @@ public class main {
 		
 	}
 	
+	/*
+	 * Checks the percentage in the first digit percentage 
+	 * hashmap to see if it looks robotly generated 
+	 * (percentage of digit 1 is between 29% and 32%)
+	 */
 	static void fraudCheck(HashMap<String, Integer> amount) {
 		if (amount.get("1") >= 29 && amount.get("1") <= 32) {
 			System.out.println("No Fraud Detected! \n");
@@ -63,6 +68,9 @@ public class main {
 	//#       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         #
 	//####################################################################
 
+	/*
+	 * This function just sets up the hashmap so it can be edited later on in the code. 
+	 */
 	static void initiateHashMaps(HashMap<String, Integer> amount) {
 		amount.put("1", 0);
 		amount.put("2", 0);
