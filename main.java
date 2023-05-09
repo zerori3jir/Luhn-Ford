@@ -47,10 +47,11 @@ public class main {
 	
 	static void fraudCheck(HashMap<String, Integer> amount) {
 		if (amount.get("1") >= 29 && amount.get("1") <= 32) {
-			System.out.println("Fraud Detected!");
+			System.out.println("No Fraud Detected! \n");
 		}
 		else {
-			System.out.println("No Fraud Detected!");
+			System.out.println("Fraud Detected! \n");
+			
 		}
 	}
 	
@@ -63,7 +64,7 @@ public class main {
 	//####################################################################
 
 	static void initiateHashMaps(HashMap<String, Integer> amount) {
-		amount.put("1", 0);
+		amount.put("1", 32);
 		amount.put("2", 0);
 		amount.put("3", 0);
 		amount.put("4", 0);
