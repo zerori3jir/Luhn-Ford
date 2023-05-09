@@ -64,7 +64,7 @@ public class main {
 	//####################################################################
 
 	static void initiateHashMaps(HashMap<String, Integer> amount) {
-		amount.put("1", 32);
+		amount.put("1", 0);
 		amount.put("2", 0);
 		amount.put("3", 0);
 		amount.put("4", 0);
