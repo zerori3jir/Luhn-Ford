@@ -18,8 +18,47 @@ public class main {
 	}
 	
 	static void enterCustomerInfo() {
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter your first Name: ");
+		String firstName = input.nextLine();
+
+		System.out.println("Enter your Last Name: ");
+		String lastName = input.nextLine();
+
+		System.out.println(" Enter the city you are from: ");
+		String city = input.nextLine();
+
+		while (true) {
+			System.out.println("Enter Postal Code: ");
+			String postalCode = input.nextLine();
+			
+			if (postalCode.length() == 6 && validatePostalCode(postalCode)) {
+				break;
+			}
+			else if (postalCode.length() < 6) {
+				System.out.println("Invalid Postal Code, please try again.");
+			}
+
+		while (true) {
+			System.out.println("Enter Credit Card Number: ");
+			String creditCard = input.nextLine(); 
+			
+			if (creditCard.length() == 12 && validateCreditcard(creditCard)) {
+				break;
+			}
+			else if (creditCard.length() < 12 || creditCard.length() > 12 ) {
+				System.out.println("Invalid Credit Card, Please try again");
+			}
+			
+
+		}
+		}
+
 		
+
 	}
+	
 	
 	static void validatePostalCode() {
 		
