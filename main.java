@@ -1,5 +1,8 @@
 import java.util.Scanner;
 import java.util.HashMap;
+import java.io.File;  
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class main {
 
@@ -34,6 +37,20 @@ public class main {
 	}
 	
 	static void reportSalesData() {
+		
+		/*
+		for(int i = 1; i < salesData().size(); i++)
+		{
+			System.out.println(i + ": " + salesData().get(i));
+		}
+		*/
+		
+		for(int i = 1; i <= salesDataPercentages().size(); i++)
+		{
+			System.out.println(salesDataPercentages().get(i));
+		}
+		
+		//salesData();
 		
 	}
 	
@@ -70,6 +87,96 @@ public class main {
 	}
 	
 	
+	/**
+	 * 
+	 * @return Returns a HashMap where the key is a number and the value is the amount of times that number appears in the data set
+	 */
+	static HashMap<Integer, Integer> salesData()
+	{
+		// Declare a dictionary for us to add to in the function
+		HashMap<Integer, Integer> toReturn = new HashMap<Integer, Integer>();
+		
+		// Create the file object
+		File salesDataFile = new File("sales.csv");
+		
+		// Create the reader
+		Scanner fileReader;
+		
+		try {
+			fileReader = new Scanner(salesDataFile);
+			
+			// Read through the file, getting the first character of the sales information and adding it to the dictionary
+			while(fileReader.hasNextLine())
+			{
+				String readLine = fileReader.nextLine();
+				Integer firstChar = readLine.split(",")[1].toCharArray()[0] - '0'; // First character of the Sales Data column
+				
+				toReturn.merge(firstChar, 1, Integer::sum);	
+
+				
+				/*
+				// If the dictionary does not contain the key, create a new entry and set the value to 1
+				if (!toReturn.containsKey(firstChar))
+				{
+					toReturn.put(firstChar, 1);
+				}
+				else // If it DOES exist, add 1 for the value 
+				{
+					System.out.println(toReturn.get(firstChar));
+					toReturn.put(firstChar, toReturn.get(firstChar) + 1);
+				}
+				*/
+			}
+			
+			fileReader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return toReturn;
+	}
+	
+	static HashMap<Integer, Integer> salesDataPercentages()
+	{
+		HashMap<Integer, Integer> toReturn = new HashMap<Integer, Integer>();
+		for(int i = 1; i < salesData().size(); i++)
+		{
+			//System.out.println(getTotalValues());
+			
+			double percentage = (double) salesData().get(i) / getTotalValues() * 100.0;
+			toReturn.put(i, (int)Math.round(percentage));
+		}
+		
+		return toReturn;
+	}
+	
+	/**
+	 * 
+	 * @return The total amount of numbers inside salesData()
+	 */
+	static int getTotalValues()
+	{
+		int total = 0;
+		
+		// Get the value of each key inside the dictionary and add to a variable
+		for(int i = 1; i < salesData().size(); i++)
+		{
+			total += salesData().get(i);
+		}
+		
+		// Return the total
+		return total;
+	}
+	
+	/**
+	 * 
+	 * @param str
+	 * @return A boolean based on whether the String is numeric
+	 */
+	public static boolean isNumeric(String str)
+	{
+		  return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+	}
 	
 	//####################################################################
 	//#                            MAIN PROGRAM                          #
