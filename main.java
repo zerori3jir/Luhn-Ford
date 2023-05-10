@@ -40,10 +40,13 @@ public class main {
 				System.out.println("Invalid Postal Code, please try again.");
 			}
 
+		}
 		while (true) {
 			System.out.println("Enter Credit Card Number: ");
 			String creditCard = input.nextLine(); 
-			
+
+			String space = creditCard.replaceAll("\\s+ " , "");
+
 			if (creditCard.length() == 12 && validateCreditcard(creditCard)) {
 				break;
 			}
@@ -51,13 +54,12 @@ public class main {
 				System.out.println("Invalid Credit Card, Please try again");
 			}
 			
-
 		}
-		}
+	}
 
 		
 
-	}
+	
 	
 	
 	static void validatePostalCode() {
