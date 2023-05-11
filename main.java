@@ -153,11 +153,11 @@ public class main {
 		
 		
 		String userInput = "";
-		String enterCustomerOption = "1";
-		String generateCustomerOption = "2";
-		String reportSalesData = "3";
-		String checkForFraud = "4";
-		String exitCondition = "9";
+		final String enterCustomerOption = "1";
+		final String generateCustomerOption = "2";
+		final String reportSalesData = "3";
+		final String checkForFraud = "4";
+		final String exitCondition = "9";
 		
 		//Set up the 'dictionaries'
 		initiateHashMaps(firstDigitAmount);
@@ -166,30 +166,25 @@ public class main {
 		while (!userInput.equals(exitCondition)) {
 			printMenu();
 			userInput = scanner.nextLine();
-			
-			if (userInput.equals(enterCustomerOption)) {
-				enterCustomerInfo(customerInfo);
-			}
-			
-			else if (userInput.equals(generateCustomerOption)) {
-				generateCustomerDataFile(customerInfo);
-			}
-			
-			else if (userInput.equals(reportSalesData)) {
-				reportSalesData();
-			}
-			
-			else if (userInput.equals(checkForFraud)) {
-				fraudCheck(firstDigitPercentage);
-			}
-			
-			else if (userInput.equals(exitCondition)) {
-				scanner.close();
-				break;
-			}
-			
-			else {
-				System.out.println("Please type in a valid option (A number from 1-9)");
+			switch (userInput) {
+				case enterCustomerOption:
+					enterCustomerInfo(customerInfo);
+					break;
+				case generateCustomerOption:
+					generateCustomerDataFile(customerInfo);
+					break;
+				case reportSalesData:
+					reportSalesData();
+					break;
+				case checkForFraud:
+					fraudCheck(firstDigitPercentage);
+					break;
+				case exitCondition:
+					scanner.close();
+					break;
+				default:
+					System.out.println("Please type in a valid option (A number from 1-9)");
+					
 			}
 		}
 		System.out.println("Program Terminated");
