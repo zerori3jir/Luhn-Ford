@@ -104,8 +104,8 @@ public class main {
 	 * hashmap to see if it looks robotly generated 
 	 * (percentage of digit 1 is between 29% and 32%)
 	 */
-	static void fraudCheck(HashMap<String, Integer> amount) {
-		if (amount.get("1") >= 29 && amount.get("1") <= 32) {
+	static void fraudCheck(HashMap<Integer, Integer> amount) {
+		if (amount.get(1) >= 29 && amount.get(1) <= 32) {
 			System.out.println("No Fraud Detected! \n");
 		}
 		else {
@@ -122,20 +122,6 @@ public class main {
 	//#       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         #
 	//####################################################################
 
-	/*
-	 * This function just sets up the hashmap so it can be edited later on in the code. 
-	 */
-	static void initiateHashMaps(HashMap<String, Integer> amount) {
-		amount.put("1", 0);
-		amount.put("2", 0);
-		amount.put("3", 0);
-		amount.put("4", 0);
-		amount.put("5", 0);
-		amount.put("6", 0);
-		amount.put("7", 0);
-		amount.put("8", 0);
-		amount.put("9", 0);
-	}
 	
 	
 	
@@ -147,8 +133,8 @@ public class main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner scanner = new Scanner(System.in);
-		HashMap<String, Integer> firstDigitAmount = new HashMap<String, Integer>();
-		HashMap<String, Integer> firstDigitPercentage = new HashMap<String, Integer>();
+		HashMap<Integer, Integer> firstDigitAmount = null;
+		HashMap<Integer, Integer> firstDigitPercentage = null;
 		ArrayList<ArrayList<String>> customerInfo = new ArrayList<ArrayList<String>>();
 		
 		
@@ -158,10 +144,6 @@ public class main {
 		final String reportSalesData = "3";
 		final String checkForFraud = "4";
 		final String exitCondition = "9";
-		
-		//Set up the 'dictionaries'
-		initiateHashMaps(firstDigitAmount);
-		initiateHashMaps(firstDigitPercentage);
 		
 		while (!userInput.equals(exitCondition)) {
 			printMenu();
