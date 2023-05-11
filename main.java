@@ -38,10 +38,11 @@ public class main {
 	 * the user input and outputs and .csv file with 
 	 * the name and path of the users choice
 	 */
-	static void generateCustomerDataFile(String[] information) {
+	static void generateCustomerDataFile(ArrayList<ArrayList<String>> information) {
 		FileWriter writer = null;
 		Scanner scanner = new Scanner(System.in);
 		try {
+			//Get user preferred location and name for file
 			System.out.println("Enter file location: ");
 			String location = scanner.nextLine();
 			System.out.println("Enter file name: ");
@@ -49,28 +50,31 @@ public class main {
 			String path = location + fileName;
 			
 		    writer = new FileWriter(path);
-		    writer.append(information[0]);
-		    writer.append(", ");
-		    writer.append(information[1]);
-		    writer.append(", ");
-		    writer.append(information[2]);
-		    writer.append(", ");
-		    writer.append(information[3]);
-		    writer.append(", ");
-		    writer.append(information[4]);
-		    writer.append("\n");
-		    
+		    //get the information from the get customer information function to add to .csv file
+		    for (int i = 0; i < information.size(); i++) {
+		    	writer.append(information.get(i).get(0));
+			    writer.append(", ");
+			    writer.append(information.get(i).get(1));
+			    writer.append(", ");
+			    writer.append(information.get(i).get(2));
+			    writer.append(", ");
+			    writer.append(information.get(i).get(3));
+			    writer.append(", ");
+			    writer.append(information.get(i).get(4));
+			    writer.append("\n");
+		    }
 		    System.out.println("CSV file is created...");
 		    scanner.close();
-		  } catch (IOException e) {
+		//Catch any issues  
+		} catch (IOException e) {
 		     e.printStackTrace();
 		  } finally {
-		  try {
-		      writer.flush();
-		      writer.close();
-		        } catch (IOException e) {
-		      e.printStackTrace();
-		        }
+			  try {
+				  writer.flush();
+				  writer.close();
+			  } catch (IOException e) {
+				  e.printStackTrace();
+		      }
 		  }
 	}
 	
@@ -136,7 +140,7 @@ public class main {
 		Scanner scanner = new Scanner(System.in);
 		HashMap<String, Integer> firstDigitAmount = new HashMap<String, Integer>();
 		HashMap<String, Integer> firstDigitPercentage = new HashMap<String, Integer>();
-		String[] customerInfo = new String[5];
+		ArrayList<ArrayList<String>> customerInfo = new ArrayList<ArrayList<String>>();
 		
 		String userInput = "";
 		String enterCustomerOption = "1";
