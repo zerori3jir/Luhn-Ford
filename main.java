@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.File;
 import java.util.HashMap;
 
 
@@ -17,50 +18,48 @@ public class main {
 					+ "Enter menu option (1-9)");
 	}
 	
-	static void enterCustomerInfo() {
-		Scanner input = new Scanner(System.in);
+	static void enterCustomerInfo(String[] information) {
+		try (Scanner input = new Scanner(System.in)) {
+			System.out.println("Enter your first Name: ");
+			String firstName = input.nextLine();
 
-		System.out.println("Enter your first Name: ");
-		String firstName = input.nextLine();
+			System.out.println("Enter your Last Name: ");
+			String lastName = input.nextLine();
 
-		System.out.println("Enter your Last Name: ");
-		String lastName = input.nextLine();
+			System.out.println(" Enter the city you are from: ");
+			String city = input.nextLine();
 
-		System.out.println(" Enter the city you are from: ");
-		String city = input.nextLine();
-	
-		while (true) {
-			System.out.println("Enter Postal Code: ");
-			String postalCode = input.nextLine();
-			
-			if (postalCode.length() == 6 && validatePostalCode(postalCode)) {
-				break;
+			while (true) {
+				System.out.println("Enter Postal Code: ");
+				String postalCode = input.nextLine();
+				
+				if (postalCode.length() > 3 && main.validatePostalCode(postalCode, postalCode)) {
+					break;
+				}
+				else if (postalCode.length() < 3) {
+					System.out.println("Invalid amount of digits");
+				}
+
 			}
-			else if (postalCode.length() < 6) {
-				System.out.println("Invalid Postal Code, please try again.");
-			}
+			while (true) {
+				System.out.println("Enter Credit Card Number: ");
+				String creditCard = input.nextLine(); 
 
+				String space = creditCard.replaceAll("\\s+ " , "");
+
+				if (creditCard.length() == 12 && validateCreditCard(creditCard)) {
+					break;
+				}
+				else if (creditCard.length() < 12 || creditCard.length() > 12 ) {
+					System.out.println("Please enter the correct amount of digits for your Credit Card");
+				
+				}
+				
+			}
+			information[0] = firstName;
+			information[1] = lastName;
+			information[2] = city;
 		}
-		while (true) {
-			System.out.println("Enter Credit Card Number: ");
-			String creditCard = input.nextLine(); 
-
-			String space = creditCard.replaceAll("\\s+ " , "");
-
-			if (creditCard.length() == 12 && validateCreditCard(creditCard)) {
-				break;
-			}
-			else if (creditCard.length() < 12 || creditCard.length() > 12 ) {
-				System.out.println("Invalid Credit Card, Please try again");
-			
-			}
-			
-		}
-		information[0] = firstName;
-        information[1] = lastName;
-        information[2] = city;
-        information[3] = postalCode;
-        information[4] = creditCard;
 
 	}
 	
@@ -69,7 +68,27 @@ public class main {
 	
 	
 	
-	static boolean validatePostalCode(String enterCustomerInfo) {
+	static boolean validatePostalCode(String enterCustomerInfo , String postalCode) {
+		Scanner sc = new Scanner(new File("postal_codes.csv"));
+		sc.useDelimiter(",");
+
+		String firstCharacters = sc.nextLine().substring(0,3);
+		String first_Postal_Code = postalCode.substring(0,3);
+
+		if (first_Postal_Code == firstCharacters) {
+			System.out.println("Postal Code Validated");
+			return false;
+
+		}
+		else if (first_Postal_Code != firstCharacters) {
+			System.out.println(" Invalid Postal Code ");
+			return true;
+		}
+
+		
+
+
+
 		return true;
 	}
 
@@ -130,7 +149,7 @@ public class main {
 		Scanner scanner = new Scanner(System.in);
 		HashMap<String, Integer> firstDigitAmount = new HashMap<String, Integer>();
 		HashMap<String, Integer> firstDigitPercentage = new HashMap<String, Integer>();
-		
+
 		String[] customerInfo = new String[5];
 		
 		String userInput = "";
@@ -149,7 +168,7 @@ public class main {
 			userInput = scanner.nextLine();
 
 			if (userInput.equals(enterCustomerOption)) {
-				enterCustomerInfo();
+				enterCustomerInfo(customerInfo);
 			}
 			
 			else if (userInput.equals(generateCustomerOption)) {
