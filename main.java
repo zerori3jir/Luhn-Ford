@@ -96,20 +96,7 @@ public class main {
 	}
 
 	static boolean validateCreditCard( String creditCard) {		
-		while (true) {
-			System.out.println("Enter Credit Card Number: ");
-			creditCard = input.nextLine(); 
-
-			String space = creditCard.replaceAll("\\s+ " , "");
-
-			if (creditCard.length() == 12 && validateCreditcard(creditCard)) {
-				break;
-			}
-			else if (creditCard.length() < 12 || creditCard.length() > 12 ) {
-				System.out.println("Invalid Credit Card, Please try again");
-			}
-			
-		}
+		return false;
 
 	}
 	
