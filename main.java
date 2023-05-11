@@ -80,19 +80,6 @@ public class main {
 	//####################################################################
 	//#       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         #
 	//####################################################################
-
-	static void initiateHashMaps(HashMap<String, Integer> amount) {
-		amount.put("1", 0);
-		amount.put("2", 0);
-		amount.put("3", 0);
-		amount.put("4", 0);
-		amount.put("5", 0);
-		amount.put("6", 0);
-		amount.put("7", 0);
-		amount.put("8", 0);
-		amount.put("9", 0);
-	}
-	
 	
 	/**
 	 * 
@@ -119,20 +106,6 @@ public class main {
 				Integer firstChar = readLine.split(",")[1].toCharArray()[0] - '0'; // First character of the Sales Data column
 				
 				toReturn.merge(firstChar, 1, Integer::sum);	
-
-				
-				/*
-				// If the dictionary does not contain the key, create a new entry and set the value to 1
-				if (!toReturn.containsKey(firstChar))
-				{
-					toReturn.put(firstChar, 1);
-				}
-				else // If it DOES exist, add 1 for the value 
-				{
-					System.out.println(toReturn.get(firstChar));
-					toReturn.put(firstChar, toReturn.get(firstChar) + 1);
-				}
-				*/
 			}
 			
 			fileReader.close();
@@ -197,8 +170,8 @@ public class main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner scanner = new Scanner(System.in);
-		HashMap<String, Integer> firstDigitAmount = new HashMap<String, Integer>();
-		HashMap<String, Integer> firstDigitPercentage = new HashMap<String, Integer>();
+		HashMap<Integer, Integer> firstDigitAmount = salesData();
+		HashMap<Integer, Integer> firstDigitPercentage = salesDataPercentages();
 		
 		String userInput = "";
 		String enterCustomerOption = "1";
@@ -206,10 +179,6 @@ public class main {
 		String reportSalesData = "3";
 		String checkForFraud = "4";
 		String exitCondition = "9";
-		
-		//Set up the 'dictionaries'
-		initiateHashMaps(firstDigitAmount);
-		initiateHashMaps(firstDigitPercentage);
 		
 		while (!userInput.equals(exitCondition)) {
 			printMenu();
