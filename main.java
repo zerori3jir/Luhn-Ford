@@ -45,10 +45,17 @@ public class main {
 		}
 		*/
 		
+		/*
 		for(int i = 1; i <= salesDataPercentages().size(); i++)
 		{
 			System.out.println(salesDataPercentages().get(i));
 		}
+		*/
+		System.out.println(salesDataPercentages().get(1));
+		System.out.println(salesDataPercentages().get(2));
+
+		System.out.println(salesDataPercentages().get(3));
+
 		
 		//salesData();
 		
@@ -136,6 +143,10 @@ public class main {
 		return toReturn;
 	}
 	
+	/**
+	 * 
+	 * @return Returns a HashMap where the key is a number and the value is the percentage of times the number appears in the data set
+	 */
 	static HashMap<Integer, Integer> salesDataPercentages()
 	{
 		HashMap<Integer, Integer> toReturn = new HashMap<Integer, Integer>();
