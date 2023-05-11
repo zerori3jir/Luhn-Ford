@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.io.File;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 
 public class main {
@@ -18,6 +19,7 @@ public class main {
 					+ "Enter menu option (1-9)");
 	}
 	
+<<<<<<< Updated upstream
 	static void enterCustomerInfo(String[] information) {
 		try (Scanner input = new Scanner(System.in)) {
 			System.out.println("Enter your first Name: ");
@@ -25,6 +27,16 @@ public class main {
 
 			System.out.println("Enter your Last Name: ");
 			String lastName = input.nextLine();
+=======
+	static void enterCustomerInfo(ArrayList<ArrayList<String>> customerInfomation) {
+		ArrayList<String> storage = new ArrayList<String>();
+		Scanner input = new Scanner(System.in);
+
+		String postalCode;
+		String creditCard;
+		System.out.println("Enter your first Name: ");
+		String firstName = input.nextLine();
+>>>>>>> Stashed changes
 
 			System.out.println(" Enter the city you are from: ");
 			String city = input.nextLine();
@@ -40,6 +52,15 @@ public class main {
 					System.out.println("Invalid amount of digits");
 				}
 
+<<<<<<< Updated upstream
+=======
+		while (true) {
+			System.out.println("Enter Postal Code: ");
+			postalCode = input.nextLine();
+			
+			if (postalCode.length() == 6 && validatePostalCode(postalCode)) {
+				break;
+>>>>>>> Stashed changes
 			}
 			while (true) {
 				System.out.println("Enter Credit Card Number: ");
@@ -80,6 +101,7 @@ public class main {
 			return false;
 
 		}
+<<<<<<< Updated upstream
 		else if (first_Postal_Code != firstCharacters) {
 			System.out.println(" Invalid Postal Code ");
 			return true;
@@ -94,6 +116,36 @@ public class main {
 
 	static boolean validateCreditCard( String creditCard) {
 		return true;
+=======
+		while (true) {
+			System.out.println("Enter Credit Card Number: ");
+			creditCard = input.nextLine(); 
+
+			String space = creditCard.replaceAll("\\s+ " , "");
+
+			if (creditCard.length() == 12 && validateCreditcard(creditCard)) {
+				break;
+			}
+			else if (creditCard.length() < 12 || creditCard.length() > 12 ) {
+				System.out.println("Invalid Credit Card, Please try again");
+			}
+			
+		}
+
+	}
+
+		
+
+	
+	
+	
+	static boolean validatePostalCode() {
+		return false;
+	}
+	
+	static boolean validateCreditCard() {
+		return false;
+>>>>>>> Stashed changes
 	}
 
 	
