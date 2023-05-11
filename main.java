@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.io.FileNotFoundException;
 
 
 public class main {
@@ -47,7 +48,7 @@ public class main {
 
 			while (true) {
 				System.out.println("Enter Credit Card Number: ");
-				creditCard = input.nextLine(); 
+				creditCard = scanner.nextLine(); 
 
 				String space = creditCard.replaceAll("\\s+ " , "");
 
@@ -72,10 +73,12 @@ public class main {
 	}
 	
 	static boolean validatePostalCode(String enterCustomerInfo , String postalCode) {
-		Scanner sc = new Scanner(new File("postal_codes.csv"));
-		sc.useDelimiter(",");
+		
+		File postalFile = new File("postal_codes.csv");
+		Scanner readFile = new Scanner(postalFile);
 
-		String firstCharacters = sc.nextLine().substring(0,3);
+		
+		String firstCharacters = readFile.nextLine().substring(0,3);
 		String first_Postal_Code = postalCode.substring(0,3);
 
 		if (first_Postal_Code == firstCharacters) {
@@ -83,16 +86,17 @@ public class main {
 			return false;
 
 		}
-		else if (first_Postal_Code != firstCharacters) {
+		else {
 			System.out.println(" Invalid Postal Code ");
 			return true;
+
+		
 		}
 
 		
 
 
 
-		return true;
 	}
 
 	static boolean validateCreditCard( String creditCard) {		
