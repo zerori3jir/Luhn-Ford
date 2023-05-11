@@ -19,31 +19,24 @@ public class main {
 					+ "Enter menu option (1-9)");
 	}
 	
-<<<<<<< Updated upstream
-	static void enterCustomerInfo(String[] information) {
-		try (Scanner input = new Scanner(System.in)) {
-			System.out.println("Enter your first Name: ");
-			String firstName = input.nextLine();
-
-			System.out.println("Enter your Last Name: ");
-			String lastName = input.nextLine();
-=======
 	static void enterCustomerInfo(ArrayList<ArrayList<String>> customerInfomation) {
 		ArrayList<String> storage = new ArrayList<String>();
-		Scanner input = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 
 		String postalCode;
 		String creditCard;
 		System.out.println("Enter your first Name: ");
-		String firstName = input.nextLine();
->>>>>>> Stashed changes
+		String firstName = scanner.nextLine();
 
-			System.out.println(" Enter the city you are from: ");
-			String city = input.nextLine();
+		System.out.println("Enter your last name: ");
+		String lastName = scanner.nextLine();
+
+		System.out.println(" Enter the city you are from: ");
+		String city = scanner.nextLine();
 
 			while (true) {
 				System.out.println("Enter Postal Code: ");
-				String postalCode = input.nextLine();
+				postalCode = scanner.nextLine();
 				
 				if (postalCode.length() > 3 && main.validatePostalCode(postalCode, postalCode)) {
 					break;
@@ -52,23 +45,13 @@ public class main {
 					System.out.println("Invalid amount of digits");
 				}
 
-<<<<<<< Updated upstream
-=======
-		while (true) {
-			System.out.println("Enter Postal Code: ");
-			postalCode = input.nextLine();
-			
-			if (postalCode.length() == 6 && validatePostalCode(postalCode)) {
-				break;
->>>>>>> Stashed changes
-			}
 			while (true) {
 				System.out.println("Enter Credit Card Number: ");
-				String creditCard = input.nextLine(); 
+				creditCard = input.nextLine(); 
 
 				String space = creditCard.replaceAll("\\s+ " , "");
 
-				if (creditCard.length() == 12 && validateCreditCard(creditCard)) {
+				if (creditCard.length() == 12 && validateCreditCard(space)) {
 					break;
 				}
 				else if (creditCard.length() < 12 || creditCard.length() > 12 ) {
@@ -77,17 +60,16 @@ public class main {
 				}
 				
 			}
-			information[0] = firstName;
-			information[1] = lastName;
-			information[2] = city;
+			storage.add(firstName);
+			storage.add(lastName);
+			storage.add(city);
+			storage.add(postalCode);
+			storage.add(creditCard);
+
+			customerInfomation.add(storage);
 		}
 
 	}
-	
-		
-
-	
-	
 	
 	static boolean validatePostalCode(String enterCustomerInfo , String postalCode) {
 		Scanner sc = new Scanner(new File("postal_codes.csv"));
@@ -101,7 +83,6 @@ public class main {
 			return false;
 
 		}
-<<<<<<< Updated upstream
 		else if (first_Postal_Code != firstCharacters) {
 			System.out.println(" Invalid Postal Code ");
 			return true;
@@ -114,9 +95,7 @@ public class main {
 		return true;
 	}
 
-	static boolean validateCreditCard( String creditCard) {
-		return true;
-=======
+	static boolean validateCreditCard( String creditCard) {		
 		while (true) {
 			System.out.println("Enter Credit Card Number: ");
 			creditCard = input.nextLine(); 
@@ -133,21 +112,6 @@ public class main {
 		}
 
 	}
-
-		
-
-	
-	
-	
-	static boolean validatePostalCode() {
-		return false;
-	}
-	
-	static boolean validateCreditCard() {
-		return false;
->>>>>>> Stashed changes
-	}
-
 	
 	static void generateCustomerDataFile() {
 		
@@ -201,6 +165,7 @@ public class main {
 		Scanner scanner = new Scanner(System.in);
 		HashMap<String, Integer> firstDigitAmount = new HashMap<String, Integer>();
 		HashMap<String, Integer> firstDigitPercentage = new HashMap<String, Integer>();
+		ArrayList<ArrayList<String>> customerInformation = new ArrayList<ArrayList<String>>();
 
 		String[] customerInfo = new String[5];
 		
