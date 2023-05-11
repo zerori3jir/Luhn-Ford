@@ -1,5 +1,8 @@
 import java.util.Scanner;
 import java.util.HashMap;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class main {
 
@@ -29,8 +32,46 @@ public class main {
 		
 	}
 	
-	static void generateCustomerDataFile() {
-		
+	
+	/*
+	 * This function takes in the information from 
+	 * the user input and outputs and .csv file with 
+	 * the name and path of the users choice
+	 */
+	static void generateCustomerDataFile(String[] information) {
+		FileWriter writer = null;
+		Scanner scanner = new Scanner(System.in);
+		try {
+			System.out.println("Enter file location: ");
+			String location = scanner.nextLine();
+			System.out.println("Enter file name: ");
+			String fileName = scanner.nextLine();
+			String path = location + fileName;
+			
+		    writer = new FileWriter(path);
+		    writer.append(information[0]);
+		    writer.append(", ");
+		    writer.append(information[1]);
+		    writer.append(", ");
+		    writer.append(information[2]);
+		    writer.append(", ");
+		    writer.append(information[3]);
+		    writer.append(", ");
+		    writer.append(information[4]);
+		    writer.append("\n");
+		    
+		    System.out.println("CSV file is created...");
+		    scanner.close();
+		  } catch (IOException e) {
+		     e.printStackTrace();
+		  } finally {
+		  try {
+		      writer.flush();
+		      writer.close();
+		        } catch (IOException e) {
+		      e.printStackTrace();
+		        }
+		  }
 	}
 	
 	static void reportSalesData() {
@@ -95,6 +136,7 @@ public class main {
 		Scanner scanner = new Scanner(System.in);
 		HashMap<String, Integer> firstDigitAmount = new HashMap<String, Integer>();
 		HashMap<String, Integer> firstDigitPercentage = new HashMap<String, Integer>();
+		String[] customerInfo = new String[5];
 		
 		String userInput = "";
 		String enterCustomerOption = "1";
@@ -116,7 +158,7 @@ public class main {
 			}
 			
 			else if (userInput.equals(generateCustomerOption)) {
-				generateCustomerDataFile();
+				generateCustomerDataFile(customerInfo);
 			}
 			
 			else if (userInput.equals(reportSalesData)) {
