@@ -1,20 +1,20 @@
 import java.util.Scanner;
 import java.util.HashMap;
 
-public class main {
 
+public class main {
 	//
 	// Functions
 	//
 	
 	static void printMenu() {
 		System.out.println("Customer and Sales System \n "
-				+ "1. Enter Customer Information \n "
-				+ "2. Generate Customer data file \n "
-				+ "3. Report on total Sales \n "
-				+ "4. Check for fraud in sales data \n "
-				+ "9. Quit\n "
-				+ "Enter menu option (1-9)");
+					+ "1. Enter Customer Information \n "
+					+ "2. Generate Customer data file \n "
+					+ "3. Report on total Sales \n "
+					+ "4. Check for fraud in sales data \n "
+					+ "9. Quit\n "
+					+ "Enter menu option (1-9)");
 	}
 	
 	static void enterCustomerInfo() {
@@ -28,7 +28,7 @@ public class main {
 
 		System.out.println(" Enter the city you are from: ");
 		String city = input.nextLine();
-
+	
 		while (true) {
 			System.out.println("Enter Postal Code: ");
 			String postalCode = input.nextLine();
@@ -47,28 +47,36 @@ public class main {
 
 			String space = creditCard.replaceAll("\\s+ " , "");
 
-			if (creditCard.length() == 12 && validateCreditcard(creditCard)) {
+			if (creditCard.length() == 12 && validateCreditCard(creditCard)) {
 				break;
 			}
 			else if (creditCard.length() < 12 || creditCard.length() > 12 ) {
 				System.out.println("Invalid Credit Card, Please try again");
+			
 			}
 			
 		}
+		information[0] = firstName;
+        information[1] = lastName;
+        information[2] = city;
+        information[3] = postalCode;
+        information[4] = creditCard;
+
+	}
+	
+		
+
+	
+	
+	
+	static boolean validatePostalCode(String enterCustomerInfo) {
+		return true;
 	}
 
-		
+	static boolean validateCreditCard( String creditCard) {
+		return true;
+	}
 
-	
-	
-	
-	static void validatePostalCode() {
-		
-	}
-	
-	static void validateCreditCard() {
-		
-	}
 	
 	static void generateCustomerDataFile() {
 		
@@ -122,6 +130,8 @@ public class main {
 		Scanner scanner = new Scanner(System.in);
 		HashMap<String, Integer> firstDigitAmount = new HashMap<String, Integer>();
 		HashMap<String, Integer> firstDigitPercentage = new HashMap<String, Integer>();
+		
+		String[] customerInfo = new String[5];
 		
 		String userInput = "";
 		String enterCustomerOption = "1";
