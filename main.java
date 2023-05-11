@@ -20,8 +20,15 @@ public class main {
 				+ "Enter menu option (1-9)");
 	}
 	
-	static void enterCustomerInfo() {
-		
+	static void enterCustomerInfo(ArrayList<ArrayList<String>> customerInfo) {
+		ArrayList<String> test = new ArrayList<String>();
+		test.add("A1");
+		test.add("A2");
+		test.add("markham");
+		test.add("L6B");
+		test.add("1234567654");
+		customerInfo.add(test);
+		System.out.println(customerInfo);
 	}
 	
 	static void validatePostalCode() {
@@ -47,24 +54,26 @@ public class main {
 			String location = scanner.nextLine();
 			System.out.println("Enter file name: ");
 			String fileName = scanner.nextLine();
+			fileName = fileName + ".csv";
 			String path = location + fileName;
 			
 		    writer = new FileWriter(path);
 		    //get the information from the get customer information function to add to .csv file
 		    for (int i = 0; i < information.size(); i++) {
-		    	writer.append(information.get(i).get(0));
-			    writer.append(", ");
-			    writer.append(information.get(i).get(1));
-			    writer.append(", ");
-			    writer.append(information.get(i).get(2));
-			    writer.append(", ");
-			    writer.append(information.get(i).get(3));
-			    writer.append(", ");
-			    writer.append(information.get(i).get(4));
-			    writer.append("\n");
+		    	for (int j = 0; j < information.get(i).size(); j++) {
+		    		if (j == 0) {
+		    			System.out.println(information.get(i).get(j));
+
+		    			writer.append(information.get(i).get(j));
+		    		}
+		    		else {
+		    			System.out.println(information.get(i).get(j));
+		    			writer.append(", ");
+					    writer.append(information.get(i).get(j));
+		    		}
+		    	}
 		    }
 		    System.out.println("CSV file is created...");
-		    scanner.close();
 		//Catch any issues  
 		} catch (IOException e) {
 		     e.printStackTrace();
@@ -142,6 +151,7 @@ public class main {
 		HashMap<String, Integer> firstDigitPercentage = new HashMap<String, Integer>();
 		ArrayList<ArrayList<String>> customerInfo = new ArrayList<ArrayList<String>>();
 		
+		
 		String userInput = "";
 		String enterCustomerOption = "1";
 		String generateCustomerOption = "2";
@@ -156,9 +166,9 @@ public class main {
 		while (!userInput.equals(exitCondition)) {
 			printMenu();
 			userInput = scanner.nextLine();
-
+			
 			if (userInput.equals(enterCustomerOption)) {
-				enterCustomerInfo();
+				enterCustomerInfo(customerInfo);
 			}
 			
 			else if (userInput.equals(generateCustomerOption)) {
