@@ -1,7 +1,5 @@
 import java.util.Scanner;
 import java.io.BufferedReader;
-
-import java.io.File;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
@@ -45,19 +43,29 @@ public class main {
 				System.out.println("Enter Postal Code: ");
 				String postalCode = scanner.nextLine();
 				
-				if (postalCode.length() > 3 && main.validatePostalCode(postalCode, postalCode)) {
+				if (postalCode.length() >= 3 && main.validatePostalCode(postalCode, postalCode)) {
+					
 					break;
 				}
 				else if (postalCode.length() < 3 || postalCode.length() > 6) {
 					System.out.println("Invalid amount of digits");
 				}
+			}
 
 			while (true) {
 				System.out.println("Enter Credit Card Number: ");
 				String creditCard = scanner.nextLine(); 
-
+				String card = "";
+				for (int i = 0; i < creditCard.length(); i++) {
+					boolean flag = Character.isDigit(creditCard.charAt(i));
+					if (flag) {
+						card = card + creditCard.charAt(i);
+					}
+				}
+				creditCard = card;
 
 				if (creditCard.length() == 16 && main.validateCreditCard(creditCard)) {
+					System.out.println("Credit Card Validated");
 					break;
 				}
 				else if (creditCard.length() < 16 || creditCard.length() > 16 ) {
@@ -67,9 +75,9 @@ public class main {
 				else {
 					System.out.println("Invalid Credit Card Number");
 				}
-				}
-				
 			}
+				
+			
 	
 			
 		storage.add(firstName);
@@ -79,8 +87,6 @@ public class main {
 		storage.add(creditCard);
 
 		customerInfomation.add(storage);
-
-		scanner.close();
 		}
 
 
