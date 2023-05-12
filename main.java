@@ -18,15 +18,9 @@ import javafx.stage.Stage;
  
 public class main extends Application {
 
-  //
+  	//
 	// Functions
 	//
-	
-	private static String creditCard;
-	private static String postalCode;
-
-
-
 	static void printMenu() {
 		System.out.println("Customer and Sales System \n "
 					+ "1. Enter Customer Information \n "
@@ -48,10 +42,13 @@ public class main extends Application {
 
 		System.out.println("Enter the city you are from: ");
 		String city = scanner.nextLine();
-
+		
+		String postalCode = "";
+		String creditCard = "";
+		
 			while (true) {
 				System.out.println("Enter Postal Code: ");
-				String postalCode = scanner.nextLine();
+				postalCode = scanner.nextLine();
 				
 				if (postalCode.length() >= 3 && main.validatePostalCode(postalCode, postalCode)) {
 					
@@ -64,7 +61,7 @@ public class main extends Application {
 
 			while (true) {
 				System.out.println("Enter Credit Card Number: ");
-				String creditCard = scanner.nextLine(); 
+				creditCard = scanner.nextLine(); 
 				String card = "";
 				for (int i = 0; i < creditCard.length(); i++) {
 					boolean flag = Character.isDigit(creditCard.charAt(i));
@@ -86,10 +83,7 @@ public class main extends Application {
 					System.out.println("Invalid Credit Card Number");
 				}
 			}
-				
-			
 	
-			
 		storage.add(firstName);
 		storage.add(lastName);
 		storage.add(city);
