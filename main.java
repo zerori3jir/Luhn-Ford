@@ -195,7 +195,7 @@ public class main extends Application {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(path + "\\salesdata.csv"));
 					
-			for (int i = 1; i < toUse.size(); i++)
+			for (int i = 1; i <= toUse.size(); i++)
 			{
 				writer.write(i + ": " + toUse.get(i) + "%\n");
 			}
