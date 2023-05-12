@@ -168,16 +168,6 @@ public class main extends Application {
 		return total;
 	}
 	
-	/**
-	 * 
-	 * @param str
-	 * @return A boolean based on whether the String is numeric
-	 */
-	public static boolean isNumeric(String str)
-	{
-		  return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
-	}
-	
 	//####################################################################
 	//#                            MAIN PROGRAM                          #
 	//#           DO NOT EDIT ANY CODE EXCEPT WHERE INDICATED            #
