@@ -342,7 +342,7 @@ public class main extends Application {
 		HashMap<Integer, Integer> firstDigitAmount = salesData();
 		HashMap<Integer, Integer> firstDigitPercentage = salesDataPercentages();
 		
-		
+		//User input options
 		String userInput = "";
 		final String enterCustomerOption = "1";
 		final String generateCustomerOption = "2";
@@ -353,6 +353,7 @@ public class main extends Application {
 		while (!userInput.equals(exitCondition)) {
 			printMenu();
 			userInput = scanner.nextLine();
+			//Check to see what the user wants to do
 			switch (userInput) {
 				case enterCustomerOption:
 					enterCustomerInfo(customerInfo);
