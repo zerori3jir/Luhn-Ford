@@ -15,6 +15,7 @@ public class main {
 	//
 	
 	private static String creditCard;
+	private static String postalCode;
 
 
 
@@ -61,7 +62,11 @@ public class main {
 				}
 				else if (creditCard.length() < 16 || creditCard.length() > 16 ) {
 					System.out.println("Please enter the correct amount of digits for your Credit Card");
-				
+				}
+
+				else {
+					System.out.println("Invalid Credit Card Number");
+				}
 				}
 				
 			}
@@ -74,9 +79,12 @@ public class main {
 		storage.add(creditCard);
 
 		customerInfomation.add(storage);
-		}
+
 		scanner.close();
-	}
+		}
+
+
+	
 	
 	static boolean validatePostalCode(String enterCustomerInfo, String postalCode) throws FileNotFoundException {
 		
