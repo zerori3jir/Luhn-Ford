@@ -1,5 +1,7 @@
 import java.util.Scanner;
+import java.io.Writer;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.util.HashMap;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -8,12 +10,15 @@ import java.util.ArrayList;
 import java.io.File;  
 import java.io.FileNotFoundException;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
  
 public class main extends Application {
 
@@ -186,6 +191,29 @@ public class main extends Application {
 		  }
 	}
 	
+	static void reportSalesData()
+	{
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the path to save the file");
+		String path = scanner.nextLine();
+		
+		HashMap<Integer, Integer> toUse = salesDataPercentages();
+		
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(path + "\\salesdata.csv"));
+					
+			for (int i = 1; i < toUse.size(); i++)
+			{
+				writer.write(i + ": " + toUse.get(i) + "%\n");
+			}
+			
+			writer.close();
+			
+        } catch (IOException e) {
+            System.err.println("Invalid path");
+        }
+	}
+	
 	static void generateGraph() {
 		launch(); // Launch calls the start function, showing the graph
 	}
@@ -233,7 +261,6 @@ public class main extends Application {
             series1.getData().add(new XYChart.Data(String.valueOf(i), toAdd));
         }
         
-     
         Scene scene  = new Scene(bc,800,600);
         bc.getData().addAll(series1);
         stage.setScene(scene);
@@ -341,6 +368,9 @@ public class main extends Application {
 					generateCustomerDataFile(customerInfo);
 					break;
 				case reportSalesData:
+					System.out.println("Close the graph to write a sales data report file.");
+
+					generateGraph();
 					reportSalesData();
 					break;
 				case checkForFraud:
