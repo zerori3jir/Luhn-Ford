@@ -2,9 +2,16 @@ import java.util.Scanner;
 import java.util.HashMap;
 import java.io.File;  
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
-public class main {
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.stage.Stage;
+ 
+public class main extends Application {
 
 	//
 	// Functions
@@ -36,37 +43,12 @@ public class main {
 		
 	}
 	
-	static void reportSalesData() {
-		
-		/*
-		for(int i = 1; i < salesData().size(); i++)
-		{
-			System.out.println(i + ": " + salesData().get(i));
-		}
-		*/
-		
-		/*
-		for(int i = 1; i <= salesDataPercentages().size(); i++)
-		{
-			System.out.println(salesDataPercentages().get(i));
-		}
-		*/
-		System.out.println(salesDataPercentages().get(1));
-		System.out.println(salesDataPercentages().get(2));
-
-		System.out.println(salesDataPercentages().get(3));
-
-		
-		//salesData();
-		
-	}
-	
 	static void calculatePercentage() {
 		
 	}
 	
 	static void generateGraph() {
-		
+		launch(); // Launch calls the start function, showing the graph
 	}
 	
 	static void fraudCheck() {
@@ -80,6 +62,40 @@ public class main {
 	//####################################################################
 	//#       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         #
 	//####################################################################
+	
+	/**
+	 * 
+	 * @return Creates a graph based on the data in salesDataPercentages and shows the window
+	 */
+	@Override public void start(Stage stage) {
+		
+		// Setting up the graph
+        stage.setTitle("Distribution between numbers in dataset");
+        final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        final BarChart<String,Number> bc = 
+            new BarChart<String,Number>(xAxis,yAxis);
+        bc.setTitle("Distribution of numbers");
+        xAxis.setLabel("Number");       
+        yAxis.setLabel("Percentage of appearance");
+ 
+        XYChart.Series series1 = new XYChart.Series();
+        HashMap<Integer, Integer> toUse = salesDataPercentages(); // Creating a copy of the data set to use
+
+        
+        
+        for (int i = 1; i <= toUse.size(); i++) // Loop over the dictionary, adding a bar for each number there is (total 9 bars)
+        {
+        	double toAdd = toUse.get(i);
+            series1.getData().add(new XYChart.Data(String.valueOf(i), toAdd));
+        }
+        
+     
+        Scene scene  = new Scene(bc,800,600);
+        bc.getData().addAll(series1);
+        stage.setScene(scene);
+        stage.show(); // Show the actual graph
+    }
 	
 	/**
 	 * 
@@ -193,7 +209,7 @@ public class main {
 			}
 			
 			else if (userInput.equals(reportSalesData)) {
-				reportSalesData();
+				generateGraph();
 			}
 			
 			else if (userInput.equals(checkForFraud)) {
