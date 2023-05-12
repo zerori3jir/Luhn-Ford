@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.io.Writer;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.HashMap;
@@ -10,15 +9,12 @@ import java.util.ArrayList;
 import java.io.File;  
 import java.io.FileNotFoundException;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
  
 public class main extends Application {
 
