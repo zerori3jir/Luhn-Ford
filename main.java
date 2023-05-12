@@ -191,6 +191,9 @@ public class main extends Application {
 		  }
 	}
 	
+	/*
+	 * Generates a salesdata.csv file where the use would like. The file contains the distribution of the numbers 
+	 */
 	static void reportSalesData()
 	{
 		Scanner scanner = new Scanner(System.in);
