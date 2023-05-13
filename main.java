@@ -34,46 +34,58 @@ public class main extends Application {
 	static void enterCustomerInfo(ArrayList<ArrayList<String>> customerInfomation) throws FileNotFoundException {
 		ArrayList<String> storage = new ArrayList<String>();
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter your first Name: ");
-		String firstName = scanner.nextLine();
+		System.out.println("Enter your first Name: "); 
+		String firstName = scanner.nextLine(); // Creates a scanner that scans for the user's input of their first name
 
 		System.out.println("Enter your last name: ");
-		String lastName = scanner.nextLine();
+		String lastName = scanner.nextLine(); // Creates a scanner that scans for the user's input of their last name
 
 		System.out.println("Enter the city you are from: ");
-		String city = scanner.nextLine();
+		String city = scanner.nextLine(); // Creates a scanner that scans for the user's input of their city
 		
-		String postalCode = "";
+		String postalCode = ""; 
 		String creditCard = "";
+		// creates an empty string for postalCode and creditCard that the user will input 
+		
 		
 			while (true) {
 				System.out.println("Enter Postal Code: ");
 				postalCode = scanner.nextLine();
 				
 				if (postalCode.length() >= 3 && main.validatePostalCode(postalCode, postalCode)) {
-					
+					/* Detects if the length of the postal Code is equal to or greater than 3 and if it returns true through the postal Code validation
+					   if the input is equal or greater than 3 then it will break the loop
+					*/ 
 					break;
 				}
 				else if (postalCode.length() < 3 || postalCode.length() > 6) {
 					System.out.println("Invalid amount of digits");
+					/* if the length is less than 3 or greater than 3
+					   It will print out a message saying that the input has a wrong number of digits
+					 */
 				}
 			}
 
 			while (true) {
 				System.out.println("Enter Credit Card Number: ");
 				creditCard = scanner.nextLine(); 
-				String card = "";
-				for (int i = 0; i < creditCard.length(); i++) {
-					boolean flag = Character.isDigit(creditCard.charAt(i));
+				String card = ""; // creates an empty string for card (this is to replace the spaces and dashes from the input)
+				for (int i = 0; i < creditCard.length(); i++) { // iterates over each character of the credit card input
+					boolean flag = Character.isDigit(creditCard.charAt(i)); // checks if the index of each index is a digit or not
 					if (flag) {
-						card = card + creditCard.charAt(i);
-					}
+						card = card + creditCard.charAt(i); // if the character is a digit then it is added into the card string
+						
+					} 
+
 				}
-				creditCard = card;
+				creditCard = card; // assigns the value of the card string back into credit card
 
 				if (creditCard.length() == 16 && main.validateCreditCard(creditCard)) {
 					System.out.println("Credit Card Validated");
 					break;
+					/* if the length of the credit card input is 16 and it returns true through the luhn algorithm
+					 * it will break the loop and print that the credit card has been validated
+					 */
 				}
 				else if (creditCard.length() < 16 || creditCard.length() > 16 ) {
 					System.out.println("Please enter the correct amount of digits for your Credit Card");
