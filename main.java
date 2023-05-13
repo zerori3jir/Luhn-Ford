@@ -61,7 +61,7 @@ public class main extends Application {
 				else if (postalCode.length() < 3 || postalCode.length() > 6) {
 					System.out.println("Invalid amount of digits");
 					/* if the length is less than 3 or greater than 3
-					   It will print out a message saying that the input has a wrong number of digits
+					 * It will print out a message saying that the input has a wrong number of digits
 					 */
 				}
 			}
@@ -108,16 +108,16 @@ public class main extends Application {
 	
 	static boolean validatePostalCode(String enterCustomerInfo, String postalCode) throws FileNotFoundException {
 		
-		try (BufferedReader br = new BufferedReader(new FileReader("postal_codes.csv"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (line.startsWith(postalCode.substring(0, 3))) {
-                    System.out.println("Postal Code Validated");
+		try (BufferedReader br = new BufferedReader(new FileReader("postal_codes.csv"))) { // opens the file "postal_codes.csv" and then reads from it
+            String line; // String to store each line of the CSV file as it's being read
+            while ((line = br.readLine()) != null) { // reads each line of the file until theres no lines left
+                if (line.startsWith(postalCode.substring(0, 3))) { // checks the first 3 character of the user's input, if it matches then it will return true
+                    System.out.println("Postal Code Validated"); // prints postal code validated if it does match
                     return true;
                 }
             }
             return false;
-        } catch (IOException e) {
+        } catch (IOException e) { // if it doesn't find a matching postal code then it will return false
             System.err.format("IOException: %s%n", e);
             System.out.println("Enter a valid postal code");
             return false;
@@ -126,20 +126,20 @@ public class main extends Application {
 
 
 	static boolean validateCreditCard( String creditCard) {		
-		int sum = 0;
-		boolean alternate = false;
-		for (int i = creditCard.length() - 1; i >= 0; i--) {
-		int n = Integer.parseInt(creditCard.substring(i, i + 1));
-		if (alternate) {
+		int sum = 0; // stores the sum of the digits from the credit card
+		boolean alternate = false; // 
+		for (int i = creditCard.length() - 1; i >= 0; i--) { // iterates over each character from the user's input backwards 
+		int n = Integer.parseInt(creditCard.substring(i, i + 1)); // for each "i"th digit, it will convert it into an integer and store it in the integer "n"
+		if (alternate) { // if it is an alternate digit, it will double the value and if it is greater than 9 it will divide it by 10 and add one
 			n *= 2;
 			if (n > 9) {
 			n = (n % 10) + 1;
 			}
 		}
-		sum += n;
-		alternate = !alternate;
+		sum += n; // adds the value of n to the string
+		alternate = !alternate; 
 		}
-		return (sum % 10 == 0);
+		return (sum % 10 == 0); //checks if the sum is divisable by 10 and will return true if it can, if it can't then it will return false
 	
 		
 
