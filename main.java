@@ -18,9 +18,9 @@ import javafx.stage.Stage;
  
 public class main extends Application {
 
-  	//
-	// Functions
-	//
+	/*
+	 * Prints the options menu
+	 */
 	static void printMenu() {
 		System.out.println("Customer and Sales System \n "
 					+ "1. Enter Customer Information \n "
@@ -30,7 +30,11 @@ public class main extends Application {
 					+ "9. Quit\n "
 					+ "Enter menu option (1-9)");
 	}
-	
+	/*
+	 * Gets the customer information 
+	 * (First name, last name, city, postal code and credit card) 
+	 * and stores it into an arraylist for other functions to use
+	 */
 	static void enterCustomerInfo(ArrayList<ArrayList<String>> customerInfomation) throws FileNotFoundException {
 		ArrayList<String> storage = new ArrayList<String>();
 		Scanner scanner = new Scanner(System.in);
@@ -105,7 +109,9 @@ public class main extends Application {
 		customerInfomation.add(storage);
 		}
 
-	
+	/*
+	 * Checks if the postal code is valid 
+	 */
 	static boolean validatePostalCode(String enterCustomerInfo, String postalCode) throws FileNotFoundException {
 		
 		try (BufferedReader br = new BufferedReader(new FileReader("postal_codes.csv"))) { // opens the file "postal_codes.csv" and then reads from it
@@ -124,7 +130,9 @@ public class main extends Application {
         }
     }
 
-
+	/*
+	 * Checks if the credit card is valid 
+	 */
 	static boolean validateCreditCard( String creditCard) {		
 		int sum = 0; // stores the sum of the digits from the credit card
 		boolean alternate = false; // 
@@ -362,6 +370,7 @@ public class main extends Application {
 		final String checkForFraud = "4";
 		final String exitCondition = "9";
 		
+		//Repeat options menu
 		while (!userInput.equals(exitCondition)) {
 			printMenu();
 			userInput = scanner.nextLine();
