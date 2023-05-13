@@ -100,6 +100,7 @@ public class main extends Application {
 				}
 			}
 	
+		// Adds the information that the user inputted into an arrayList
 		storage.add(firstName);
 		storage.add(lastName);
 		storage.add(city);
@@ -107,6 +108,8 @@ public class main extends Application {
 		storage.add(creditCard);
 
 		customerInfomation.add(storage);
+
+
 		}
 
 	/*
@@ -135,10 +138,10 @@ public class main extends Application {
 	 */
 	static boolean validateCreditCard( String creditCard) {		
 		int sum = 0; // stores the sum of the digits from the credit card
-		boolean alternate = false; // 
+		boolean alternate = false; 
 		for (int i = creditCard.length() - 1; i >= 0; i--) { // iterates over each character from the user's input backwards 
 		int n = Integer.parseInt(creditCard.substring(i, i + 1)); // for each "i"th digit, it will convert it into an integer and store it in the integer "n"
-		if (alternate) { // if it is an alternate digit, it will double the value and if it is greater than 9 it will divide it by 10 and add one
+		if (alternate) { // if it is an alternate digit, it will double the value and if it is greater than 9 it will divide the last digit by 10 and add one
 			n *= 2;
 			if (n > 9) {
 			n = (n % 10) + 1;
